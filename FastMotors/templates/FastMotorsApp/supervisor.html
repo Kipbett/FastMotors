@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends "FastMotorsApp/base.html"%}
+{% load static %}
+{% block body_block%}
+    <div class="container">
+      <div class="supervisor text-center">
+        <h3>Fill In The Details</h3>
+      </div>
+
+<script>
+
+    $(document).ready(function() {
+
+        $(".btn").click(function(){
+
+            var services = [];
+
+            $.each($("input[name='service_type']:checked"), function(){
+
+                $("textarea").append(services.push($(this).val()));
+
+            });
+        });
+
+    });
+
+    $(document).ready(function(){
+      $("textarea").hide();
+    });
+
+</script>
+      <div class="container">
+        <form method="POST" class="form">
+            <table class="table">
+                {{ supervisor_form.as_table}}
+                {% csrf_token %}
+            </table>
+            <input type="submit", value="Save Data" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+{% endblock %}
